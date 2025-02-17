@@ -17,13 +17,7 @@ func _physics_process(delta: float) -> void:
 	
 	if follow:
 		
-		var direction = (follow.global_position - global_position)
 		
-		if direction.length() > follow_distance:
-			
-			direction = direction.normalized()
-			
-			velocity = direction * SPEED
 			
 			
 		look_at(follow.global_position, Vector3.UP)
