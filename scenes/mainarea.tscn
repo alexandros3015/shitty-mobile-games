@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfatbg40bwk8i"]
+
+[ext_resource type="PackedScene" uid="uid://c2swe8loiubqm" path="res://scenes/guy.tscn" id="1_rb5ol"]
+[ext_resource type="PackedScene" uid="uid://cd5rms4jrvr2x" path="res://scenes/follow.tscn" id="2_ifj08"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oefoi"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_lgpsl"]
+sky_material = SubResource("ProceduralSkyMaterial_oefoi")
+
+[sub_resource type="Environment" id="Environment_ox2ji"]
+background_mode = 2
+sky = SubResource("Sky_lgpsl")
+tonemap_mode = 2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kgqmh"]
+
+[node name="mainarea" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ox2ji")
+
+[node name="guy" parent="." instance=ExtResource("1_rb5ol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.16657, 0)
+
+[node name="follow" parent="." instance=ExtResource("2_ifj08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102014, 2.14852, 4.65244)
+
+[node name="Camera3D" type="Camera3D" parent="follow"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("WorldBoundaryShape3D_kgqmh")

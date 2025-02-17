@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2swe8loiubqm"]
+
+[ext_resource type="Script" path="res://scripts/guy.gd" id="1_4llsc"]
+[ext_resource type="PackedScene" uid="uid://djbteitx621cw" path="res://assets/Animated Human.glb" id="1_x0mg8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_65ona"]
+height = 5.2271
+radius = 0.718234
+
+[node name="guy" type="CharacterBody3D"]
+script = ExtResource("1_4llsc")
+
+[node name="Root Scene" parent="." instance=ExtResource("1_x0mg8")]
+
+[node name="hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.585, 0)
+shape = SubResource("CylinderShape3D_65ona")
