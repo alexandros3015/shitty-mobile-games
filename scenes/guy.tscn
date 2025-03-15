@@ -7,7 +7,7 @@
 height = 5.2271
 radius = 0.718234
 
-[node name="guy" type="CharacterBody3D"]
+[node name="guy" type="CharacterBody3D" groups=["guy"]]
 script = ExtResource("1_4llsc")
 
 [node name="Root Scene" parent="." instance=ExtResource("2_6b1ya")]

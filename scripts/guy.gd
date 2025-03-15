@@ -1,6 +1,7 @@
 extends CharacterBody3D
+class_name Guy
 
-@export var follow_distance: float = 2
+@export var follow_distance: float = 3
 @export var SPEED: float = 5
 
 var follow: FollowShpere

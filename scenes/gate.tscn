@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://drw7cccrxjcrv"]
+
+[ext_resource type="Script" uid="uid://cm7qknisribto" path="res://scripts/gate.gd" id="1_xfvdi"]
+[ext_resource type="Script" uid="uid://s86ae46lpwad" path="res://scripts/gatePARENT.gd" id="1_xwxio"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ghoj6"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.705
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfvdi"]
+albedo_color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwxio"]
+size = Vector3(1, 0.64, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwxio"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.419608)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hudsw"]
+material = SubResource("StandardMaterial3D_xwxio")
+size = Vector3(1, 0.665, 0.03)
+
+[node name="gate" type="Node3D"]
+transform = Transform3D(-13.3, 0, -2.00824e-06, 0, 13.3, 0, 2.00824e-06, 0, -13.3, 0, -9.05323, 0)
+script = ExtResource("1_xwxio")
+
+[node name="cylinder1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96362, 0)
+mesh = SubResource("CylinderMesh_ghoj6")
+surface_material_override/0 = SubResource("StandardMaterial3D_xfvdi")
+
+[node name="cylinder2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07352, 0.96362, 0)
+mesh = SubResource("CylinderMesh_ghoj6")
+surface_material_override/0 = SubResource("StandardMaterial3D_xfvdi")
+
+[node name="cylinder3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0248, 0.96362, 0)
+mesh = SubResource("CylinderMesh_ghoj6")
+surface_material_override/0 = SubResource("StandardMaterial3D_xfvdi")
+
+[node name="gate1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0332121, 0.973234, 0)
+script = ExtResource("1_xfvdi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gate1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.534386, 0, 0)
+shape = SubResource("BoxShape3D_xwxio")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gate1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.504394, 0, 0)
+mesh = SubResource("BoxMesh_hudsw")
+
+[node name="Label3D" type="Label3D" parent="gate1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500757, 0.0172706, 0)
+text = "The j izzer"
+
+[node name="gate2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 1.00977, 0.973234, 1.57487e-07)
+script = ExtResource("1_xfvdi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gate2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.534386, 0, 0)
+shape = SubResource("BoxShape3D_xwxio")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gate2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.504394, 0, 0)
+mesh = SubResource("BoxMesh_hudsw")
+
+[node name="Label3D" type="Label3D" parent="gate2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500757, 0.0172706, 0)
+text = "The j izzer"
+
+[connection signal="body_entered" from="gate1" to="gate1" method="_on_body_entered"]
+[connection signal="body_entered" from="gate2" to="gate2" method="_on_body_entered"]
